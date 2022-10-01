@@ -33,9 +33,6 @@ else {
 // inicio el servidor
 const connectedServer = httpServer.listen(args.PORT, () => 
   console.log(`[${env.NODE_ENV.trim()}] Server is up and running on port => ${env.PORT}`));
-connectedServer.on("error", error => {
-  console.log('There was an unexpected error in the server');
-  console.log(error);
-});
+connectedServer.on("error", error => console.log('There was an unexpected error in the server', error));
 
 module.exports = args;

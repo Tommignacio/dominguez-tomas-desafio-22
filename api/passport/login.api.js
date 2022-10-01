@@ -1,17 +1,22 @@
 const bcrypt = require("bcrypt");
-const Controller = require("../../controllers/index.controller");
+const Resolver = require("../../graphql/resolvers/index.resolver");
 
-const userController = new Controller().user;
+const userResolver = new Resolver().user;
 
 const isValidPassowrd = async (user, password) => await bcrypt.compare(password, user.password);
 
-const loginApi = async (userEmail, password, done) => {
-  try {
-    const user = await userController.getUser(userEmail);
-    if(!await isValidPassowrd(user, password)) return done(null, false);
-    return done(null, user);
-  }
-  catch(error) { done(null, false); }
+const loginApi = async ({ data }) => {
+  console.log("login: ", { data });
+  // try {
+  //   const user = await userResolver.getUser(userEmail);
+  //   if(!await isValidPassowrd(user, password)) return done(null, false);
+  //   done(null, user);
+  //   return { message: "User logged in", response: user };
+  // }
+  // catch(error) { 
+  //   done(null, false); 
+  //   return error 
+  // }
 }
 
 module.exports = loginApi;

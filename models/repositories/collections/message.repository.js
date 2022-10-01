@@ -3,29 +3,36 @@ const daosFactory = require("../../daos/daos.factory");
 class MessageRepository {
 	constructor() {
 		this.message = daosFactory().message;
-		this.user = daosFactory().user;
 	}
 
-	async getData(data) {
-		if(!data) return await this.message.getAll();
-		return await this.getById(data.id);
+	async getData({ id, author }) {
+		if(id) return await this.getById(id);
+		if(author) return await this.getByAuthor(author);
+		return await this.message.getAll();
 	}
 
-	async getById(idUser) {
-		const user = await this.user.getById(idUser);
-		if(!user) throw new Error(`the ID: "${idUser}" entered does not match any product in our database`);
-		const messages = [];
-		for (let i = 0; i < user.chatHistory.length; i++) {
-			const idMsg = user.chatHistory[i];
-			const message = await this.message.getById(idMsg);
-			messages.push(message);
-		}
-		return messages;
+	async getById(idMsg) {
+		const response = await this.message.getById(idMsg);
+		if(!response) throw new Error(`the ID: "${idMsg}" entered does not match any message in our database`);
+		return response;
+	}
+	async getByAuthor(idUser) {
+		const response = await this.message.getByAuthor(idUser);
+		return response;
 	}
 
 	async save(data) {
-		await this.product.save(data);
-		return "Message sent";
+		const response = await this.message.save(data);
+		return response;
+	}
+
+	async update(idMsg, data) {
+		const response = await this.message.updateById(idMsg, data);
+		return response;
+	}
+
+	async deleteById(idMsg) {
+		await this.message.deleteById(idMsg);
 	}
 }
 

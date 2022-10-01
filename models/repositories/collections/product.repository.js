@@ -7,10 +7,10 @@ class ProductRepository {
 
 	async getData(data) {
 		if(!data) return await this.product.getAll();
-		const { id, name, maxPrice } = data;
+		if(data) return await this.getById(data);
+		const { name, maxPrice } = data;
 		let nameProduct;
 		let priceProduct;
-		if(id) return await this.getById(id);
 		if(name) {
 			nameProduct = await this.product.getByName(name);
 			if(!nameProduct) throw new Error(`the NAME: "${name}" entered does not match any product in our database`);
@@ -34,7 +34,7 @@ class ProductRepository {
 
 	async save(data) {
 		const response = await this.product.save(data);
-		return response._id;
+		return response;
 	}
 
 	async update(idProd, data) {

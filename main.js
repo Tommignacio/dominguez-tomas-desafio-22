@@ -45,7 +45,7 @@ const mainServer = () => {
 
   //--------------------------------------------
   // rutas del servidor
-  app.use("/api", routes);
+  app.use("/graphql", routes);
 
   //--------------------------------------------
   // Middlewares (verifica rutas)

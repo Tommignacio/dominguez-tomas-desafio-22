@@ -11,13 +11,17 @@ class MessageMongoDao extends ContainerMongo {
     else return MessageMongoDao.#instance;
   }
 
-  async getAll() {
-    return await this.model.ReadAll().populate("author");
+  async getByAuthor(author) {
+    return await this.model.readAll({ author });
   }
 
-  async getById() {
-    return await this.model.ReadAll().populate("author");
-  }
+  // async getAll() {
+  //   return await this.model.readAll().populate("author");
+  // }
+
+  // async getById() {
+  //   return await this.model.readAll().populate("author");
+  // }
 }
 
 module.exports = MessageMongoDao;

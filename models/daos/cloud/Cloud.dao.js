@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const dbConfig = require("../../../utils/config/db.config");
 const env = require("../../../utils/config/env.config");
 
-const MessageMongoDao = require("./mongo/collections/messagesdao");
+const MessageMongoDao = require("./mongo/collections/messages.dao");
 const ProductMongoDao = require("./mongo/collections/products.dao");
 const UserMongoDao = require("./mongo/collections/users.dao");
 

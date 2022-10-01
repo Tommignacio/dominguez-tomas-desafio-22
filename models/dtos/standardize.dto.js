@@ -34,7 +34,7 @@ class StandardizeDTO {
         .find(e => this.data.location.split(" ")[0].toLowerCase() == e.prefix).country,
       phone: `${StandardizeDTO.#dataLocation
         .find(e => this.data.location.split(" ")[0].toLowerCase() == e.prefix).code} ${req.body.phone}`,
-      admin: this.data.userEmail.split(".")[0] == "admin" ? true : false,
+      admin: this.data.userEmail.split(".")[0] == "admin" ? true : false
     };
   }
 

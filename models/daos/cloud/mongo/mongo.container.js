@@ -7,11 +7,11 @@ class ContainerMongo {
   }
 
   async getAll() {
-    return await this.model.readAll({}, { __v: 0 });
+    return await this.model.readAll({});
   }
 
   async getById(id) {
-    return await this.model.readOne({ _id: id }, { __v: 0 });
+    return await this.model.readOne({ _id: id });
   }
 
   async save(data) {

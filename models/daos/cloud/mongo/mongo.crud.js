@@ -13,7 +13,8 @@ class MongoHelpers {
   }
 
   async readOne(filter) {
-    return await this.model.findOne(filter, { __v: 0 }).lean();
+    const asd = await this.model.findOne(filter, { __v: 0 });
+    return asd
   }
 
   async update(filter, data) {

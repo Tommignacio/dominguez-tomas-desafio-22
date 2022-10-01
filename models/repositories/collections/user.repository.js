@@ -3,16 +3,17 @@ const daosFactory = require("../../daos/daos.factory");
 class UserRepository {
 	constructor() {
 		this.user = daosFactory().user;
+		this.message = daosFactory().message;
 	}
 
-	async getData(data) {
-		if(!data) return await this.user.getAll();
-		return await this.getById(data.id);
+	async getData(id) {
+		if(!id) return await this.user.getAll();
+		return await this.getById(id);
 	}
 
 	async getById(idUser) {
 		const user = await this.user.getById(idUser);
-		if(!user) throw new Error(`the ID: "${idUser}" entered does not match any product in our database`);
+		if(!user) throw new Error(`the ID: "${idUser}" entered does not match any user in our database`);
 		return user;
 	}
 
